@@ -10,7 +10,7 @@ Este servicio web se usa para obtener la prediccion climatica en Ferengi, Betaso
 
 * **Url**
 
-  _http://localhost/_
+  _http://45.58.112.119:8080/_
 
 * **Methodo:**
 
@@ -20,7 +20,7 @@ Este servicio web se usa para obtener la prediccion climatica en Ferengi, Betaso
 * **Llamada de ejemplo:**
 
     ```sh
-    ~$ wget -qO- http://localhost/
+    ~$ wget -qO- http://45.58.112.119:8080/
     ```
 
 * **Respuesta exitosa:**
@@ -55,7 +55,7 @@ Este servicio web se usa para obtener la prediccion climatica en Ferengi, Betaso
 
 * **Url**
 
-  _http://localhost/clima_
+  _http://45.58.112.119:8080/clima_
 
 * **Methodo:**
 
@@ -72,7 +72,7 @@ Este servicio web se usa para obtener la prediccion climatica en Ferengi, Betaso
 * **Llamada de ejemplo:**
 
     ```sh
-    ~$ wget -qO- http://localhost/clima?dia=68
+    ~$ wget -qO- http://45.58.112.119:8080/clima?dia=68
     ```
 
 * **Respuesta exitosa:**
@@ -99,7 +99,7 @@ Este servicio web se usa para obtener la prediccion climatica en Ferengi, Betaso
 
 * **Url**
 
-  _http://localhost/generar_
+  _http://45.58.112.119:8080/generar_
 
 * **Methodo:**
 
@@ -124,7 +124,7 @@ Este servicio web se usa para obtener la prediccion climatica en Ferengi, Betaso
 * **Llamada de ejemplo:**
 
     ```sh
-    ~$ wget -qO- http://localhost:8081/generar?dias=71
+    ~$ wget -qO- http://45.58.112.119:8080/generar?dias=71
     ```
 
 * **Respuesta exitosa:**
