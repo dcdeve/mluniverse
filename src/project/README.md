@@ -4,6 +4,51 @@ Este servicio web se usa para obtener la prediccion climatica en Ferengi, Betaso
 
 ## Metodos disponibles
 
+**Resumen**
+----
+  _Se usa para obtener el clima de un dia en especifico._
+
+* **Url**
+
+  _http://localhost/_
+
+* **Methodo:**
+
+
+  `GET`
+
+* **Llamada de ejemplo:**
+
+    ```sh
+    ~$ wget -qO- http://localhost/
+    ```
+
+* **Respuesta exitosa:**
+
+    **Content:**
+    `{
+    "error": false,
+    "sequia": 40,
+    "pico_lluvia": {
+        "dia": 3168,
+        "perimetro": 6262.300354242006
+    },
+    "null": 2299,
+    "optimo": 40,
+    "total_dias": 3600,
+    "lluvia": 1181
+    }`
+
+* **Respuesta no exitosa:**
+
+    **Content:**
+    `{
+    "errorList": [
+        "La base de datos no ha sido generada."
+    ],
+    "error": "true"
+    }`
+
 **clima**
 ----
   _Se usa para obtener el clima de un dia en especifico._

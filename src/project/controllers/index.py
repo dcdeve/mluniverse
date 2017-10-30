@@ -6,6 +6,7 @@ from flask_restful import Resource, reqparse, abort
 import json
 from project.controllers.generator import *
 from project.controllers.weather import *
+from project.controllers.sumary import *
 import project.config.vars as gvars
 
 
@@ -28,6 +29,10 @@ class Wheather(Resource):
         else:
             return weatherByDay(request.args)
 
+class Index(Resource):
+    def get(self):
+        return resumen()
 
+api.add_resource(Index, '/')
 api.add_resource(Generate, '/generar')
 api.add_resource(Wheather, '/clima')
