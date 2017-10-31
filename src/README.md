@@ -10,7 +10,7 @@ Este servicio web se usa para obtener la prediccion climatica en Ferengi, Betaso
 
 * **Url**
 
-  _http://45.58.112.119:8080/_
+  _http://dcdev.pythonanywhere.com/_
 
 * **Methodo:**
 
@@ -20,7 +20,7 @@ Este servicio web se usa para obtener la prediccion climatica en Ferengi, Betaso
 * **Llamada de ejemplo:**
 
     ```sh
-    ~$ wget -qO- http://45.58.112.119:8080/
+    ~$ wget -qO- http://dcdev.pythonanywhere.com/
     ```
 
 * **Respuesta exitosa:**
@@ -55,7 +55,7 @@ Este servicio web se usa para obtener la prediccion climatica en Ferengi, Betaso
 
 * **Url**
 
-  _http://45.58.112.119:8080/clima_
+  _http://dcdev.pythonanywhere.com/clima_
 
 * **Methodo:**
 
@@ -72,7 +72,7 @@ Este servicio web se usa para obtener la prediccion climatica en Ferengi, Betaso
 * **Llamada de ejemplo:**
 
     ```sh
-    ~$ wget -qO- http://45.58.112.119:8080/clima?dia=68
+    ~$ wget -qO- http://dcdev.pythonanywhere.com/clima?dia=68
     ```
 
 * **Respuesta exitosa:**
@@ -93,13 +93,13 @@ Este servicio web se usa para obtener la prediccion climatica en Ferengi, Betaso
     ]
     }`
 
-**generar**
+**generar (Desactivado mientras se crea en multithread)**
 ----
   _Se usa para generar el pronostico que se consulta en el metodo clima._
 
 * **Url**
 
-  _http://45.58.112.119:8080/generar_
+  _http://dcdev.pythonanywhere.com/generar_
 
 * **Methodo:**
 
@@ -124,7 +124,7 @@ Este servicio web se usa para obtener la prediccion climatica en Ferengi, Betaso
 * **Llamada de ejemplo:**
 
     ```sh
-    ~$ wget -qO- http://45.58.112.119:8080/generar?dias=71
+    ~$ wget -qO- http://dcdev.pythonanywhere.com/generar?dias=71
     ```
 
 * **Respuesta exitosa:**
