@@ -14,8 +14,13 @@ class Generator:
     def __init__(self, getArgs):
         self.getArgs = getArgs
         self.errorList = []
-        self.totalized = {'error':False, 'total_dias': 0, 'pico_lluvia': {'dia': None, 'perimetro': 0}}
+        self.result = {'error':False, 'total_dias': 0, 'pico_lluvia': {'dia': None, 'perimetro': 0}}
         self.defaultData = {'planeta':solar.vulcano.name, 'anios':0, 'dias':0}
+
+    def getResult(self):
+        if self.containError() is True:
+            return {'error':True, 'errorList':self.errorList}
+        return self.result
 
     def containError(self):
         if len(self.errorList) > 0:
@@ -61,16 +66,16 @@ class Generator:
         # Reset db
         initdb()
 
-        self.totalized['total_dias'] = self.days + self.planet.daysForYear() * self.years
+        self.result['total_dias'] = self.days + self.planet.daysForYear() * self.years
 
-        total_days = Information(name='total_dias', value='%s' % (self.totalized['total_dias']))
+        total_days = Information(name='total_dias', value='%s' % (self.result['total_dias']))
         total_days.save()
 
         for day in range(int(total_days.value)):
             pr.setPositions(solar.listPositions(day))
             prediction = pr.checkWeather()
-            self.totalized.setdefault(prediction['name'], 0)
-            self.totalized[prediction['name']] += 1
+            self.result.setdefault(prediction['name'], 0)
+            self.result[prediction['name']] += 1
 
             perimeter = 0.0
             if 'perimetro' in prediction:
@@ -80,12 +85,12 @@ class Generator:
             pronostic.save()
 
             if 'perimetro' in prediction and \
-                    prediction['perimetro'] > self.totalized['pico_lluvia']['perimetro']:
-                self.totalized['pico_lluvia']['perimetro'] = prediction['perimetro']
-                self.totalized['pico_lluvia']['dia'] = day
+                    prediction['perimetro'] > self.result['pico_lluvia']['perimetro']:
+                self.result['pico_lluvia']['perimetro'] = prediction['perimetro']
+                self.result['pico_lluvia']['dia'] = day
 
-        max_rain = Information(name='pico_lluvia', value='%s' % (json.dumps(self.totalized['pico_lluvia'])))
+        max_rain = Information(name='pico_lluvia', value='%s' % (json.dumps(self.result['pico_lluvia'])))
         max_rain.save()
 
-        sumary = Information(name='resumen', value='%s' % (json.dumps(self.totalized)))
-        sumary.save()
+        summary = Information(name='resumen', value='%s' % (json.dumps(self.result)))
+        summary.save()

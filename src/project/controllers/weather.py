@@ -12,6 +12,11 @@ class Weather:
         self.errorList = []
         self.defaultData = {}
 
+    def getResult(self):
+        if self.containError() is True:
+            return {'error':True, 'errorList':self.errorList}
+        return self.result
+
     def containError(self):
         if len(self.errorList) > 0:
             return True
@@ -33,11 +38,11 @@ class Weather:
 
     def main(self):
         self.getToVars()
-        result = getWeatherDay(self.day)
-        if result is not None:
+        getDay = getWeatherDay(self.day)
+        if getDay is not None:
             self.result = {
-                'dia': result.day,
-                'clima': result.weather
+                'dia': getDay.day,
+                'clima': getDay.weather
                 }
         else:
             self.errorList.append('El dia seleccionado no ha sido generado.')
