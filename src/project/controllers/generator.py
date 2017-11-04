@@ -56,7 +56,7 @@ class Generator:
         else:
             self.years = int(self.defaultData['anios'])
 
-    def tryGenerate(self):
+    def main(self):
         self.getToVars()
         # Reset db
         initdb()

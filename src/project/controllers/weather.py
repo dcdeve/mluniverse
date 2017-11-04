@@ -5,28 +5,39 @@ import json
 import project.config.vars as gvars
 from project.models.Weather import *
 
-defaultData = {}
+class Weather:
 
-def weatherValidation(getArguments):
-    errorList = []
-    # day validation
-    if 'dia' in getArguments:
-        if not getArguments['dia'].isdigit():
-            errorList.append('Error en tipo de dato <dia>.')
-    else:
-        errorList.append('Debe indicar al menos un dia.')
-    # Evaluating errores in validation
-    if len(errorList) > 0:
-        return {'error':True, 'errorList':errorList}
+    def __init__(self, getArgs):
+        self.getArgs = getArgs
+        self.errorList = []
+        self.defaultData = {}
 
-    return {'error':False}
+    def containError(self):
+        if len(self.errorList) > 0:
+            return True
+        return False
 
-def weatherByDay(getArguments):
-    day = getArguments['dia']
-    result = getWeatherDay(day)
-    if result is not None:
-        return {
-            'dia': result.day,
-            'clima': result.weather
-            }
-    return {'error':'true', 'errorList':['El dia seleccionado no ha sido generado.']}
+    def validateArgs(self):
+        # day validation
+        if 'dia' in self.getArgs:
+            if self.getArgs['dia'].isdigit():
+                if int(self.getArgs['dia']) > gvars.MAX_DB_INT:
+                    self.errorList.append('El argumento <dia> esta fuera de rango.')
+            else:
+                self.errorList.append('Error en tipo de dato <dia>.')
+        else:
+            self.errorList.append('Debe indicar al menos un dia.')
+
+    def getToVars(self):
+        self.day = self.getArgs['dia']
+
+    def main(self):
+        self.getToVars()
+        result = getWeatherDay(self.day)
+        if result is not None:
+            self.result = {
+                'dia': result.day,
+                'clima': result.weather
+                }
+        else:
+            self.errorList.append('El dia seleccionado no ha sido generado.')
